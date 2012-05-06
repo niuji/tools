@@ -77,6 +77,13 @@ public class Benchmark {
         return result;
     }
 
+    public PerformanceResult warmupAndBenchmark(Runnable testTask) {
+        for (int i = 0; i < warmupTimes; i++) {
+            testTask.run();
+        }
+        return benchmark(testTask);
+    }
+
     class MeasureTask implements Runnable {
         private IPerformanceMetric metric;
         private Runnable testTask;

@@ -5,11 +5,11 @@ import org.junit.Test;
 public class BenchmarkTest {
     @Test
     public void benchTest() {
-        int cnt = 100_000;
-        int thread = 4;
+        int cnt = 20_000;
+        int thread = Runtime.getRuntime().availableProcessors();
 
-        PerformanceResult result = Benchmark.newInstance().measureTimes(cnt)
-                .useThreads(thread).benchmark(new Runnable() {
+        PerformanceResult result = Benchmark.newInstance().warmupTimes(10).measureTimes(cnt)
+                .useThreads(thread).warmupAndBenchmark(new Runnable() {
 
                     @Override
                     public void run() {
@@ -34,7 +34,7 @@ public class BenchmarkTest {
 
             }
         }).getFormatedResult();
-        System.out.println(System.nanoTime() - s);
+        System.out.printf("single run time: %dns.%n", System.nanoTime() - s);
 
     }
 }

@@ -15,7 +15,7 @@ public class PerformanceResult {
         this.threads = threads;
     }
 
-    public void addMetric(IPerformanceMetric metric) {
+    void addMetric(IPerformanceMetric metric) {
         metrics.add(metric);
     }
 
