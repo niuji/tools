@@ -2,14 +2,13 @@ package tools.benchmark;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import tools.benchmark.metrics.ActualTimeMetric;
 import tools.benchmark.metrics.IPerformanceMetric;
-import tools.benchmark.metrics.TimeMetric;
+import tools.benchmark.metrics.TotalTimeMetric;
 
 public class Benchmark {
     private int measureTimes = 1;
@@ -18,7 +17,8 @@ public class Benchmark {
     private List<IPerformanceMetric> metrics;
 
     private Benchmark() {
-        metrics = Arrays.asList(new IPerformanceMetric[] { new TimeMetric() });
+        metrics = Arrays.asList(new IPerformanceMetric[] {
+                new TotalTimeMetric(), new ActualTimeMetric() });
     }
 
     public static Benchmark newInstance() {
@@ -26,7 +26,7 @@ public class Benchmark {
     }
 
     /**
-     * ÉèÖÃ²âÊÔ´ÎÊý£¬Ä¬ÈÏ1
+     * æµ‹è¯•ä»»åŠ¡æ‰§è¡Œæ¬¡æ•°ï¼Œé»˜è®¤1
      * 
      * @param times
      * @return
@@ -37,7 +37,7 @@ public class Benchmark {
     }
 
     /**
-     * ÉèÖÃJVMÔ¤ÈÈÔËÐÐ´ÎÊý£¬Ä¬ÈÏ1
+     * jvmé¢„çƒ­ä»»åŠ¡æ‰§è¡Œæ¬¡æ•°ï¼Œé»˜è®¤1
      * 
      * @param times
      * @return
@@ -48,7 +48,7 @@ public class Benchmark {
     }
 
     /**
-     * ²âÊÔÊ¹ÓÃ´ÎÊý£¬Ä¬ÈÏ1
+     * æµ‹è¯•ä½¿ç”¨çº¿ç¨‹æ•°ï¼Œé»˜è®¤1
      * 
      * @param threads
      * @return
@@ -61,8 +61,8 @@ public class Benchmark {
     public PerformanceResult benchmark(Runnable testTask) {
         PerformanceResult result = new PerformanceResult(measureTimes, threads);
         ExecutorService es = Executors.newFixedThreadPool(threads);
-        CountDownLatch latch = new CountDownLatch(measureTimes);
         for (IPerformanceMetric metric : metrics) {
+            CountDownLatch latch = new CountDownLatch(measureTimes);
             for (int i = 0; i < measureTimes; i++) {
                 es.execute(new MeasureTask(metric, testTask, latch));
             }

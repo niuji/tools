@@ -2,10 +2,10 @@ package tools.benchmark.metrics;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class TimeMetric implements IPerformanceMetric {
+public class TotalTimeMetric implements IPerformanceMetric {
     ThreadLocal<Long> stopWatch = new ThreadLocal<>();
     AtomicLong nanos = new AtomicLong();
-    String format = "Time metric[avg: %,fms, total: %,fms, tps: %,.4f.]";
+    String format = "Total run time metric[avg: %,.4fms, total: %,.4fms, tps: %,.4f.]";
     final double MILLIS_BY_NANOS = 1_000_000.0;
     final double SECONDS_BY_NANOS = 1_000_000_000.0;
 
