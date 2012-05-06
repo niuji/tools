@@ -2,15 +2,15 @@ package tools.benchmark.metrics;
 
 public interface IPerformanceMetric {
     /**
-     * ¿ªÊ¼Ò»´Î²âÁ¿
+     * å¼€å§‹è®°å½•
      */
     public void start();
     /**
-     * ½áÊøÒ»´Î²âÁ¿
+     * åœæ­¢è®°å½•
      */
     public void stop();
     /**
-     * ·µ»ØÍ³¼Æ½á¹û
+     * æ ¼å¼åŒ–metricè®°å½•ç»“æœ
      * @return
      */
     public String metricResult(int measureTimes);
