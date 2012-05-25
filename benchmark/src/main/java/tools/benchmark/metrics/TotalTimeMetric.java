@@ -2,7 +2,7 @@ package tools.benchmark.metrics;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class TotalTimeMetric implements IPerformanceMetric {
+public class TotalTimeMetric extends AbstractMetric {
     ThreadLocal<Long> stopWatch = new ThreadLocal<>();
     AtomicLong nanos = new AtomicLong();
     String format = "Total run time metric[avg: %,.4fms, total: %,.4fms, tps: %,.4f.]";

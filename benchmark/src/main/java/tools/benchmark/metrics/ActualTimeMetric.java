@@ -2,7 +2,7 @@ package tools.benchmark.metrics;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-public class ActualTimeMetric implements IPerformanceMetric {
+public class ActualTimeMetric extends AbstractMetric {
     AtomicLong startNanos = new AtomicLong(Long.MAX_VALUE);
     AtomicLong stopNanos = new AtomicLong();
     String format = "Actual run time metric[avg: %,.4fms, total: %,.4fms, tps: %,.4f.]";

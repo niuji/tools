@@ -1,6 +1,10 @@
 package tools.benchmark.metrics;
 
-public interface IPerformanceMetric {
+public interface IMetric {
+    /**
+     * 执行测量的校准，会在执行
+     */
+    public void calibrate();
     /**
      * 开始记录
      */
