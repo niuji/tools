@@ -8,8 +8,9 @@ public class BenchmarkTest {
         int cnt = 20_000;
         int thread = Runtime.getRuntime().availableProcessors();
 
-        PerformanceResult result = Benchmark.newInstance().warmupTimes(10).measureTimes(cnt)
-                .useThreads(thread).warmupAndBenchmark(new Runnable() {
+        PerformanceResult result = Benchmark.newInstance().warmupTimes(10)
+                .measureTimes(cnt).useThreads(thread)
+                .warmupAndBenchmark(new Runnable() {
 
                     @Override
                     public void run() {
@@ -34,7 +35,8 @@ public class BenchmarkTest {
 
             }
         }).getFormatedResult();
-        System.out.printf("single run time: %dns.%n", System.nanoTime() - s);
+        System.out.printf("single run time: %fms.%n",
+                (System.nanoTime() - s) / 1_000_000.0);
 
     }
 }
