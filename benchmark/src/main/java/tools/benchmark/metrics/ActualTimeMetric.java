@@ -16,8 +16,8 @@ public class ActualTimeMetric extends AbstractMetric {
 
     @Override
     public void stop() {
-        long current = 0;
         long stopTime = System.nanoTime();
+        long current = 0;
         while (!stopNanos.compareAndSet(current, stopTime)) {
             current = stopNanos.get();
             stopTime = Math.max(stopTime, current);
