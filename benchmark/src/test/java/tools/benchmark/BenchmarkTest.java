@@ -2,6 +2,11 @@ package tools.benchmark;
 
 import org.junit.Test;
 
+import tools.benchmark.metrics.ActualTimeMetric;
+import tools.benchmark.metrics.IMetric;
+import tools.benchmark.metrics.MemoryUsageMetric;
+import tools.benchmark.metrics.TotalTimeMetric;
+
 public class BenchmarkTest {
     @Test
     public void benchTest() {
@@ -14,14 +19,19 @@ public class BenchmarkTest {
 
                     @Override
                     public void run() {
-                        Benchmark.newInstance().benchmark(new Runnable() {
+                        Benchmark
+                                .newInstance()
+                                .setMetrics(
+                                        new IMetric[] { new TotalTimeMetric(),
+                                                new ActualTimeMetric() })
+                                .benchmark(new Runnable() {
 
-                            @Override
-                            public void run() {
-                                // TODO Auto-generated method stub
+                                    @Override
+                                    public void run() {
+                                        // TODO Auto-generated method stub
 
-                            }
-                        }).getFormatedResult();
+                                    }
+                                }).getFormatedResult();
                     }
                 });
         System.out.println(result.getFormatedResult());

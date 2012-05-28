@@ -2,7 +2,7 @@ package tools.benchmark.metrics;
 
 public interface IMetric {
     /**
-     * 执行测量的校准，会在执行
+     * 执行测量的校准，在进行metric测量之前执行
      */
     public void calibrate();
     /**
