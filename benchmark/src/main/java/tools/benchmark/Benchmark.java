@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 import tools.benchmark.metrics.ActualTimeMetric;
 import tools.benchmark.metrics.IMetric;
+import tools.benchmark.metrics.MemoryUsageMetric;
 import tools.benchmark.metrics.TotalTimeMetric;
 
 public class Benchmark {
@@ -18,7 +19,7 @@ public class Benchmark {
 
     private Benchmark() {
         setMetrics(new IMetric[] {
-                new TotalTimeMetric(), new ActualTimeMetric() });
+                new TotalTimeMetric(), new ActualTimeMetric(), new MemoryUsageMetric() });
     }
 
     public static Benchmark newInstance() {
