@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dev.tools</groupId>
 	<artifactId>tools</artifactId>
@@ -7,11 +8,21 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>benchmark</module>
-    <module>invoker</module>
-  </modules>
+		<module>invoker</module>
+	</modules>
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
 				<!-- Ignore/Execute plugin execution -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -31,7 +42,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -62,15 +73,15 @@
 		</plugins>
 	</build>
 	<distributionManagement>
-        <repository>
-            <id>shengpay.nexus</id>
-            <name>ShengPay Internal Repository</name>
-            <url>http://nexus.shengpaydev.com/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>shengpay.nexus</id>
-            <name>ShengPay Internal Repository</name>
-            <url>http://nexus.shengpaydev.com/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+		<repository>
+			<id>shengpay.nexus</id>
+			<name>ShengPay Internal Repository</name>
+			<url>http://nexus.shengpaydev.com/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>shengpay.nexus</id>
+			<name>ShengPay Internal Repository</name>
+			<url>http://nexus.shengpaydev.com/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
