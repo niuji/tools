@@ -6,12 +6,21 @@
  */
 package tools.invoker;
 
+import tools.invoker.command.CommandDescriptor;
+
 /**
  * 功能描述：
  * @author jiangyixin.stephen
  * time : 2013-2-25 下午3:51:35
  */
 public class Result {
-    public boolean success;
+
+    /**
+     * @param desc
+     */
+    public void addFinished(CommandDescriptor desc) {
+        // TODO Auto-generated method stub
+        
+    }
     
 }

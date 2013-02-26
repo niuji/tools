@@ -8,7 +8,7 @@ package tools.invoker;
 
 import org.junit.Test;
 
-import tools.invoker.command.SimpleCommand;
+import tools.invoker.command.FailFastCommand;
 
 /**
  * 功能描述：
@@ -18,7 +18,7 @@ import tools.invoker.command.SimpleCommand;
 public class InvokerTest {
     @Test
     public void testSyncInvoker(){
-        Invokers.newInvoker().addLogic("更新数据", new SimpleCommand<Integer>() {
+        Invokers.newInvoker().addLogic("更新数据", new FailFastCommand<Integer>() {
 
             @Override
             public Integer execute() throws Exception {

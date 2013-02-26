@@ -11,10 +11,10 @@ package tools.invoker.command;
  * @author jiangyixin.stephen
  * time : 2013-2-25 下午5:43:19
  */
-public abstract class SimpleCommand<T> implements Command<T> {
+public abstract class FailFastCommand<T> implements Command<T> {
     @Override
-    public void onError(Exception ex) {
-
+    public boolean onError(Exception ex) {
+        return false;
     }
 
     @Override

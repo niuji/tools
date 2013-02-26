@@ -18,15 +18,18 @@ import tools.invoker.command.CommandDescriptor;
  */
 public abstract class AbstExecutionStrategy implements ExecutionStrategy {
 
-    protected void execCmd(CommandDescriptor desc, Result result){
+    protected boolean execCmd(CommandDescriptor desc, Result result){
         Command cmd = desc.getCmd();
         try {
             Object rt = cmd.execute();
             desc.setResult(rt);
             cmd.onReturn(rt);
+            return true;
         } catch (Exception e) {
             desc.setEx(e);
-            cmd.onError(e);
+            return cmd.onError(e);
+        } finally {
+            result.addFinished(desc);
         }
     }
 

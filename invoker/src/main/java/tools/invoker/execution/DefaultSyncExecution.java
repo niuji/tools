@@ -21,7 +21,9 @@ public class DefaultSyncExecution extends AbstExecutionStrategy {
     public Result execute(List<CommandDescriptor> cmds) {
         Result result = new Result();
         for (CommandDescriptor desc : cmds) {
-            execCmd(desc, result);
+            if (!execCmd(desc, result)) {
+                break;
+            }
         }
         return result;
     }
