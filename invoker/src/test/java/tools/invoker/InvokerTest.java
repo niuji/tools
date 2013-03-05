@@ -18,7 +18,7 @@ import tools.invoker.command.FailFastCommand;
 public class InvokerTest {
     @Test
     public void testSyncInvoker(){
-        Invokers.newInvoker().addLogic("更新数据", new FailFastCommand<Integer>() {
+        Invokers.newSyncInvoker().addLogic("更新数据", new FailFastCommand<Integer>() {
 
             @Override
             public Integer execute() throws Exception {
