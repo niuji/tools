@@ -8,19 +8,32 @@ package tools.invoker;
 
 import tools.invoker.command.CommandDescriptor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 功能描述：
+ *
  * @author jiangyixin.stephen
- * time : 2013-2-25 下午3:51:35
+ *         time : 2013-2-25 下午3:51:35
  */
 public class Result {
+    private List<CommandDescriptor> cmds = new ArrayList<>();
 
-    /**
-     * @param desc
-     */
-    public void addFinished(CommandDescriptor desc) {
-        // TODO Auto-generated method stub
-        
+    public Result(List<CommandDescriptor> cmds) {
+        this.cmds = cmds;
     }
-    
+
+    public List<CommandDescriptor> getCompletedCmds() {
+        List<CommandDescriptor> rt = new ArrayList<CommandDescriptor>();
+        for (CommandDescriptor cmd : cmds) {
+            switch (cmd.getStatus()) {
+                case SUCCESS:
+                case FAIL:
+                    rt.add(cmd);
+                    break;
+            }
+        }
+        return rt;
+    }
 }

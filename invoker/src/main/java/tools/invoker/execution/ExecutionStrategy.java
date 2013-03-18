@@ -18,5 +18,14 @@ import tools.invoker.command.CommandDescriptor;
  * time : 2013-2-25 下午3:38:29
  */
 public interface ExecutionStrategy {
-    public Result execute(List<CommandDescriptor> cmds);
+    /**
+     * 执行所有命令
+     * @param cmds
+     */
+    public void execute(List<CommandDescriptor> cmds);
+
+    /**
+     * 等待执行完成
+     */
+    public void waitForComplete();
 }

@@ -31,10 +31,24 @@ public class Invoker {
     }
     
     /**
-     * 执行所有命令逻辑
+     * 使用executionStrategy执行所有命令逻辑
      * @return
      */
-    public Result execute(){
-        return executionStrategy.execute(cmds);
+    public Invoker execute(){
+        executionStrategy.execute(cmds);
+        return this;
+    }
+
+    /**
+     * 获取执行结果
+     * @return
+     */
+    public Result getResults(){
+        executionStrategy.waitForComplete();
+        return new Result(cmds);
+    }
+
+    public void setExecutionStrategy(ExecutionStrategy executionStrategy) {
+        this.executionStrategy = executionStrategy;
     }
 }

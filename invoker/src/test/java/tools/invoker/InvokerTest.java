@@ -8,7 +8,10 @@ package tools.invoker;
 
 import org.junit.Test;
 
+import tools.invoker.command.CommandDescriptor;
 import tools.invoker.command.FailFastCommand;
+
+import java.util.List;
 
 /**
  * 功能描述：
@@ -18,13 +21,15 @@ import tools.invoker.command.FailFastCommand;
 public class InvokerTest {
     @Test
     public void testSyncInvoker(){
-        Invokers.newSyncInvoker().addLogic("更新数据", new FailFastCommand<Integer>() {
+        Result result = Invokers.newSyncInvoker().addLogic("更新数据", new FailFastCommand<Integer>() {
 
             @Override
             public Integer execute() throws Exception {
                 return 1;
             }
 
-        }).execute();
+        }).execute().getResults();
+        List<CommandDescriptor> cmds = result.getCompletedCmds();
+        System.out.println(cmds.get(0).getResult());
     }
 }

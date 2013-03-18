@@ -6,6 +6,8 @@
  */
 package tools.invoker.command;
 
+import tools.invoker.command.constants.Status;
+
 /**
  * 功能描述：
  * @author jiangyixin.stephen
@@ -16,6 +18,7 @@ public class CommandDescriptor {
     private Command<?> cmd;
     private Object result;
     private Exception ex;
+    private Status status;
 
     /**
      * @param cmd
@@ -24,6 +27,7 @@ public class CommandDescriptor {
         super();
         this.name = name;
         this.cmd = cmd;
+        status = Status.INIT;
     }
 
     public String getName() {
@@ -46,15 +50,33 @@ public class CommandDescriptor {
         return result;
     }
 
+    /**
+     * set执行返回值，并设置状态为success
+     * @param result
+     */
     public void setResult(Object result) {
         this.result = result;
+        this.status = Status.SUCCESS;
     }
 
     public Exception getEx() {
         return ex;
     }
 
+    /**
+     * set异常，并社会自状态为fail
+     * @param ex
+     */
     public void setEx(Exception ex) {
         this.ex = ex;
+        this.status = Status.FAIL;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

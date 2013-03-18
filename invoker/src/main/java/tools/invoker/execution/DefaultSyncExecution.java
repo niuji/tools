@@ -12,19 +12,23 @@ import tools.invoker.Result;
 import tools.invoker.command.CommandDescriptor;
 
 /**
- * 功能描述：
+ * 功能描述：依次同步执行命令
  * @author jiangyixin.stephen
  * time : 2013-2-25 下午3:46:01
  */
 public class DefaultSyncExecution extends AbstExecutionStrategy {
     @Override
-    public Result execute(List<CommandDescriptor> cmds) {
-        Result result = new Result();
+    public void execute(List<CommandDescriptor> cmds) {
         for (CommandDescriptor desc : cmds) {
-            if (!execCmd(desc, result)) {
+            boolean success = execCmd(desc);
+            if (!success) {
                 break;
             }
         }
-        return result;
+    }
+
+    @Override
+    public void waitForComplete() {
+
     }
 }

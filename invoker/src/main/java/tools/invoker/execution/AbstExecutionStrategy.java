@@ -6,19 +6,22 @@
  */
 package tools.invoker.execution;
 
-import tools.invoker.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tools.invoker.command.Command;
 import tools.invoker.command.CommandDescriptor;
 
 
 /**
  * 功能描述：
+ *
  * @author jiangyixin.stephen
- * time : 2013-2-25 下午5:21:13
+ *         time : 2013-2-25 下午5:21:13
  */
 public abstract class AbstExecutionStrategy implements ExecutionStrategy {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    protected boolean execCmd(CommandDescriptor desc, Result result){
+    protected boolean execCmd(CommandDescriptor desc) {
         Command cmd = desc.getCmd();
         try {
             Object rt = cmd.execute();
@@ -27,9 +30,12 @@ public abstract class AbstExecutionStrategy implements ExecutionStrategy {
             return true;
         } catch (Exception e) {
             desc.setEx(e);
-            return cmd.onError(e);
-        } finally {
-            result.addFinished(desc);
+            try {
+                return cmd.onError(e);
+            } catch (Exception ex) {
+                logger.warn("execute command[" + desc.getName() + "].onError() failed. ", ex);
+                return false;
+            }
         }
     }
 
