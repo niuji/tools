@@ -7,7 +7,7 @@
 package tools.invoker.command;
 
 /**
- * 功能描述：
+ * 功能描述：发生错误后停止执行执行链
  * @author jiangyixin.stephen
  * time : 2013-2-25 下午5:43:19
  */
