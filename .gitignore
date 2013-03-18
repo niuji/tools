@@ -7,5 +7,4 @@
 /.idea
 /.project
 /.settings
-/invoker
-/tools.iml
+*.iml
