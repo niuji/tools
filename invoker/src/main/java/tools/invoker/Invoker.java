@@ -6,16 +6,15 @@
  */
 package tools.invoker;
 
+import tools.invoker.command.Command;
+import tools.invoker.command.CommandDescriptor;
+import tools.invoker.execution.ExecutionStrategy;
+
 import java.util.LinkedList;
 import java.util.List;
 
-import tools.invoker.command.Command;
-import tools.invoker.command.CommandDescriptor;
-import tools.invoker.execution.DefaultSyncExecution;
-import tools.invoker.execution.ExecutionStrategy;
-
 /**
- * 功能描述：
+ * 功能描述：短时间批量调用工具类
  * @author jiangyixin.stephen
  * time : 2013-2-25 下午3:04:59
  */
@@ -23,7 +22,7 @@ public class Invoker {
     // 依次存放需要执行的逻辑
     private List<CommandDescriptor> cmds = new LinkedList<>();
     
-    private ExecutionStrategy executionStrategy = new DefaultSyncExecution();
+    private ExecutionStrategy executionStrategy;
     
     public Invoker addLogic(String name, Command<?> cmd){
         cmds.add(new CommandDescriptor(name, cmd));
@@ -48,7 +47,8 @@ public class Invoker {
         return new Result(cmds);
     }
 
-    public void setExecutionStrategy(ExecutionStrategy executionStrategy) {
+    public Invoker setExecutionStrategy(ExecutionStrategy executionStrategy) {
         this.executionStrategy = executionStrategy;
+        return this;
     }
 }

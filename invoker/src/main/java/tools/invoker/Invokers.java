@@ -6,6 +6,9 @@
  */
 package tools.invoker;
 
+import tools.invoker.execution.DefaultAsyncExecution;
+import tools.invoker.execution.DefaultSyncExecution;
+
 /**
  * 功能描述：
  * @author jiangyixin.stephen
@@ -17,6 +20,14 @@ public class Invokers {
      * @return
      */
     public static Invoker newSyncInvoker(){
-        return new Invoker();
+        return new Invoker().setExecutionStrategy(new DefaultSyncExecution());
+    }
+
+    /**
+     * 创建同步执行的执行者
+     * @return
+     */
+    public static Invoker newAsyncInvoker(int poolSize){
+        return new Invoker().setExecutionStrategy(new DefaultAsyncExecution(poolSize));
     }
 }

@@ -34,7 +34,7 @@ public class InvokerTest {
 
         }).execute().getResults();
         List<CommandDescriptor> cmds = result.getCompletedCmds();
-        Assert.assertThat((Integer) cmds.get(0).getResult(), is(new Integer(1)));
+        Assert.assertThat((Integer) cmds.get(0).getResult(), is(1));
     }
 
     @Test
@@ -79,5 +79,35 @@ public class InvokerTest {
         List<CommandDescriptor> cmds = result.getCompletedCmds();
         Assert.assertThat(cmds.size(), is(2));
         Assert.assertThat(cmds.get(1).getName(), is("会被执行"));
+    }
+
+    @Test
+    public void testAsyncInvoker() {
+        long s = System.currentTimeMillis();
+        Result result = Invokers.newAsyncInvoker(4).addLogic("耗时操作1", new FailFastCommand<Integer>() {
+
+            @Override
+            public Integer execute() throws Exception {
+                Thread.sleep(1000);
+                return 1;
+            }
+
+        }).addLogic("耗时操作2", new FailFastCommand<Integer>() {
+            @Override
+            public Integer execute() throws Exception {
+                Thread.sleep(1000);
+                return 2;
+            }
+        }).addLogic("耗时操作3", new FailFastCommand<Integer>() {
+            @Override
+            public Integer execute() throws Exception {
+                Thread.sleep(1000);
+                return 3;
+            }
+        }).execute().getResults();
+        System.out.println(System.currentTimeMillis() - s);
+        List<CommandDescriptor> cmds = result.getCompletedCmds();
+        Assert.assertThat(cmds.size(), is(3));
+        Assert.assertThat((Integer) cmds.get(1).getResult(), is(2));
     }
 }
