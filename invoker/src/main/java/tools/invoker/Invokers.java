@@ -16,7 +16,7 @@ import tools.invoker.execution.DefaultSyncExecution;
  */
 public class Invokers {
     /**
-     * 创建同步执行的执行者
+     * 创建默认同步执行的执行者
      * @return
      */
     public static Invoker newSyncInvoker(){
@@ -24,7 +24,7 @@ public class Invokers {
     }
 
     /**
-     * 创建同步执行的执行者
+     * 创建默认异步执行的执行者。此执行情况下，会忽略failsafe和failfast配置，执行所有加入的cmd
      * @return
      */
     public static Invoker newAsyncInvoker(int poolSize){
