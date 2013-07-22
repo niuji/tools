@@ -23,7 +23,7 @@ public class ReloadableHolder<T> {
     private static Map<Class<?>, ReloadableContentProvider<?>> cpMap;
 
     static {
-        cpMap = new HashMap<>();
+        cpMap = new HashMap<Class<?>, ReloadableContentProvider<?>>();
         try {
             Enumeration<URL> urls = ReloadableHolder.class.getClassLoader().getResources("META-INF/devtools/tools.misc.container.provider.ReloadableContentProvider");
             if (urls != null) {
@@ -73,7 +73,7 @@ public class ReloadableHolder<T> {
     private Map<Object, Object> backedMap;
 
     public ReloadableHolder() {
-        this(new HashMap<>());
+        this(new HashMap<Object, Object>());
     }
 
     public ReloadableHolder(HashMap backedMap) {
