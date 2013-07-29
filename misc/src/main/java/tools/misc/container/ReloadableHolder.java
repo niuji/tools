@@ -88,6 +88,10 @@ public class ReloadableHolder<T> {
         backedMap.put(key, new ReloadableItem<T>(value, cp));
     }
 
+    public boolean contains(Object key){
+        return backedMap.containsKey(key);
+    }
+
     public Object get(Object key) throws Exception {
         return get(key, null);
     }
