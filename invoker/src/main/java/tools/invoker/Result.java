@@ -18,7 +18,7 @@ import java.util.List;
  *         time : 2013-2-25 下午3:51:35
  */
 public class Result {
-    private List<CommandDescriptor> cmds = new ArrayList<>();
+    private List<CommandDescriptor> cmds = new ArrayList<CommandDescriptor>();
 
     public Result(List<CommandDescriptor> cmds) {
         this.cmds = cmds;

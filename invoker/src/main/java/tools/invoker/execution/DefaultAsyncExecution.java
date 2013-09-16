@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
  */
 public class DefaultAsyncExecution extends AbstExecutionStrategy {
     private ExecutorService pool;
-    private List<Future> futures = new LinkedList<>();
+    private List<Future> futures = new LinkedList<Future>();
 
     public DefaultAsyncExecution(int poolSize){
         pool = Executors.newFixedThreadPool(poolSize);

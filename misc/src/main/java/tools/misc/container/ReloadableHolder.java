@@ -119,7 +119,7 @@ public class ReloadableHolder<T> {
 
         public Object getContent(Object extraParam) throws Exception {
             Comparable newVersion = cp.getVersion(item);
-            if (newVersion.compareTo(version) > 0) {
+            if (newVersion.compareTo(version) != 0) {
                 version = newVersion;
                 content = cp.getContent(item, extraParam);
             }

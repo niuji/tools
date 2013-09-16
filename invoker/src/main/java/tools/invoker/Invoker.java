@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class Invoker {
     // 依次存放需要执行的逻辑
-    private List<CommandDescriptor> cmds = new LinkedList<>();
+    private List<CommandDescriptor> cmds = new LinkedList<CommandDescriptor>();
     
     private ExecutionStrategy executionStrategy;
     
